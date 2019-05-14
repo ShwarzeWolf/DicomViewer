@@ -18,26 +18,16 @@ dicomFile2 = pydicom.dcmread(secondFile);
 image1 = dicomFile1.pixel_array
 image2 = dicomFile2.pixel_array
 
-plt.imshow(image2);
+croppedImage1 = functions.cropImage(image1, 160, 120, 300, 230)
+croppedImage2 = functions.cropImage(image2, 160, 120, 300, 230)
+
+resultedImage = functions.matchThreePoints(croppedImage1, croppedImage2, 0, 1, 40, 41, 1, 100, 0, 0, 40, 40, 101, 100)
+
+plt.imshow(resultedImage);
 plt.waitforbuttonpress();
-
-
-
-
-#image3 = functions.matchThreePoints(image 1, image 2)
-
-#plt.imshow(image3);
-#plt.waitforbuttonpress();
-
-
-
-
 
 #rotationMatrix = cv.getRotationMatrix2D((config.width / 2, config.height / 2), config.rotationAngle, config.scale)
 
-
-#croppedImage1 = image1[160:300, 120:230];
-#croppedImage2 = image2[160:300, 120:230];
 #cv.addWeighted(croppedImage1, alpha, croppedImage2, beta, gamma, croppedImage2)
 
 #plt.imshow(croppedImage2);
