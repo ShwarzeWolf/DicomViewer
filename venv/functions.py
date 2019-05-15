@@ -5,6 +5,8 @@ import config
 
 def matchThreePoints(image1, image2, x1, y1, x2, y2, x3, y3, xx1, yy1, xx2, yy2, xx3, yy3):
 
+    imposeImages(image1, image2);
+
     pts1 = np.float32([[x1, y1], [x2, y2], [x3, y3]])
     pts2 = np.float32([[xx1, yy1], [xx2, yy2], [xx3, yy3]])
 
@@ -25,10 +27,7 @@ def imposeImages(image1, image2):
     width = width1 if (width1 > width2) else width2
     height = height1 if (height1 > height2) else height2
 
-    rotationMatrix = cv.getRotationMatrix2D((width / 2, height / 2), 0.0, 1.0)
-
-    fittedImage1 = cv.warpAffine(image1, rotationMatrix, (height, width))
-    fittedImage2 = cv.warpAffine(image2, rotationMatrix, (height, width))
-
+    fittedImage1 = cv.resize(image1, (height, width));
+    fittedImage2 = cv.resize(image2, (height, width));
 
     return cv.addWeighted(fittedImage1, config.alpha, fittedImage2, config.beta, config.gamma)

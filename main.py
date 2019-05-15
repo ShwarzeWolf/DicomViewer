@@ -21,9 +21,9 @@ image2 = dicomFile2.pixel_array
 croppedImage1 = functions.cropImage(image1, 100, 120, 300, 230)
 croppedImage2 = functions.cropImage(image2, 160, 120, 300, 230)
 
-
 resultedImage = functions.imposeImages(croppedImage1, croppedImage2);
-#resultedImage = functions.matchThreePoints(croppedImage1, croppedImage2, 0, 1, 40, 41, 1, 100, 0, 0, 40, 40, 101, 100)
+
+resultedImage = functions.matchThreePoints(croppedImage1, croppedImage2, 0, 1, 40, 41, 1, 100, 0, 0, 40, 40, 101, 100)
 
 plt.imshow(resultedImage);
 plt.waitforbuttonpress();
