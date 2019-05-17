@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+import matplotlib.pyplot as plt
 from PIL import Image
 import config
 
@@ -15,7 +16,11 @@ def matchThreePoints(image1, image2, x1, y1, x2, y2, x3, y3, xx1, yy1, xx2, yy2,
     width, height = image2.shape[:2]
     changedSecondImage = cv.warpAffine(image2, rotationMatrix, (height, width))
 
-    return cv.addWeighted(image1, config.alpha, changedSecondImage, config.beta, config.gamma, changedSecondImage)
+    resultedImage = cv.addWeighted(image1, 0.5, changedSecondImage, 0.5, 1, changedSecondImage)
+
+    plt.imshow(resultedImage);
+    plt.waitforbuttonpress();
+
 
 def cropImage(image, x1, y1, x2, y2):
     return image[x1:x2, y1:y2];
